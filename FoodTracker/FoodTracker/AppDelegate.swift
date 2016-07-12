@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  FoodTracker
 //
-//  Created by justin frazer on 7/4/16.
+//  Created by justin frazer on 7/10/16.
 //  Copyright © 2016 jfrazer. All rights reserved.
 //
 

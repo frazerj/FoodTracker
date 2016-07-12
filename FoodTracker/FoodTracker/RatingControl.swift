@@ -1,7 +1,14 @@
+//
+//  RatingControl.swift
+//  FoodTracker
+//
+//  Created by justin frazer on 7/11/16.
+//  Copyright © 2016 jfrazer. All rights reserved.
+//
+
 import UIKit
 
 class RatingControl: UIView {
-
     // MARK: Properties
     
     var rating = 0 {
@@ -9,10 +16,10 @@ class RatingControl: UIView {
             setNeedsLayout()
         }
     }
-    
     var ratingButtons = [UIButton]()
     let spacing = 5
     let starCount = 5
+
     
     // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -22,7 +29,7 @@ class RatingControl: UIView {
         let emptyStarImage = UIImage(named: "emptyStar")
         
         for _ in 0..<starCount {
-            let button = UIButton()
+            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
             
             button.setImage(emptyStarImage, forState: .Normal)
             button.setImage(filledStarImage, forState: .Selected)
@@ -36,9 +43,8 @@ class RatingControl: UIView {
         }
 
     }
-    
+
     override func layoutSubviews() {
-        // Set the button's width and height to a square the size of the frame's height.
         let buttonSize = Int(frame.size.height)
         var buttonFrame = CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize)
         
@@ -50,23 +56,21 @@ class RatingControl: UIView {
         
         updateButtonSelectionStates()
     }
-
-    override func intrinsicContentSize() -> CGSize { //determines the total size of the view?
+    
+    override func intrinsicContentSize() -> CGSize {
         let buttonSize = Int(frame.size.height)
         let width = (buttonSize * starCount) + (spacing * (starCount - 1))
         
-        return CGSize(width: width, height: buttonSize)
-    }
-    
+        return CGSize(width: width, height: buttonSize)    }
+
     // MARK: Button Action
     func ratingButtonTapped(button: UIButton) {
         rating = ratingButtons.indexOf(button)! + 1
         
         updateButtonSelectionStates()
     }
-    
+
     func updateButtonSelectionStates() {
-        
         for (index, button) in ratingButtons.enumerate() {
             // If the index of a button is less than the rating, that button should be selected.
             button.selected = index < rating
