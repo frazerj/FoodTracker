@@ -2,61 +2,63 @@
 //  MealViewController.swift
 //  FoodTracker
 //
-//  Created by justin frazer on 7/4/16.
+//  Created by justin frazer on 7/10/16.
 //  Copyright © 2016 jfrazer. All rights reserved.
 //
 
 import UIKit
 
+class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-//This is where the delegates (protocols) are being implemented.
-class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // MARK: Properties
+
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Handle the text field's user input through delegate callbacks.
+
+        // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
     }
 
-    // MARK: UITextFieldDelegate
     
+    // MARK: UITextFieldDelegate
+
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
+        
         return true
     }
-    
+
     func textFieldDidEndEditing(textField: UITextField) {
 
     }
     
-    //MARK: UIImagePickerControllerDelegate
+    // MARK: UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        // The info dictionary contains multiple representations of the image, and this uses the original.
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        // Set photoImageView to display the selected image.
-        photoImageView.image = selectedImage
-        
-        // Dismiss the picker.
-        dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+            // The info dictionary contains multiple representations of the image, and this uses the original.
+            let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+            
+            // Set photoImageView to display the selected image.
+            photoImageView.image = selectedImage
+            
+            // Dismiss the picker.
+            dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: Actions
+    
     @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
-        //Hide the keyboard. 
+        // Hide the keyboard.
         nameTextField.resignFirstResponder()
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
@@ -69,9 +71,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         imagePickerController.delegate = self
         
         presentViewController(imagePickerController, animated: true, completion: nil)
-
-        
     }
-    
+
 }
 

@@ -2,7 +2,7 @@
 //  MealTableViewCell.swift
 //  FoodTracker
 //
-//  Created by justin frazer on 7/9/16.
+//  Created by justin frazer on 7/11/16.
 //  Copyright © 2016 jfrazer. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import UIKit
 class MealTableViewCell: UITableViewCell {
 
     // MARK: Properties
-
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!

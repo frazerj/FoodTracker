@@ -2,35 +2,34 @@
 //  MealTableViewController.swift
 //  FoodTracker
 //
-//  Created by justin frazer on 7/9/16.
+//  Created by justin frazer on 7/11/16.
 //  Copyright © 2016 jfrazer. All rights reserved.
 //
 
 import UIKit
 
 class MealTableViewController: UITableViewController {
-    
+
     // MARK: Properties
     
     var meals = [Meal]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Load the sample data.
         loadSampleMeals()
     }
     
     func loadSampleMeals() {
+        let photo1 = UIImage(named: "Image1")!
+        let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4)!
         
-        let sampleImage1 = UIImage(named: "sampleImage1")!
-        let meal1 = Meal(name: "Caprese Salad", photo: sampleImage1, rating: 4)!
+        let photo2 = UIImage(named: "Image2")!
+        let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5)!
         
-        let sampleImage2 = UIImage(named: "sampleImage2")!
-        let meal2 = Meal(name: "Chicken and Potatoes", photo: sampleImage2, rating: 5)!
-        
-        let sampleImage3 = UIImage(named: "sampleImage3")!
-        let meal3 = Meal(name: "Pasta with Meatballs", photo: sampleImage3, rating: 3)!
+        let photo3 = UIImage(named: "Image3")!
+        let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3)!
         
         meals += [meal1, meal2, meal3]
     }
@@ -53,18 +52,18 @@ class MealTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cellIdentifier = "MealTableViewCell"
+       // Table view cells are reused and should be dequeued using a cell identifier.
+       let cellIdentifier = "MealTableViewCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MealTableViewCell
+       let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MealTableViewCell
         
         // Fetches the appropriate meal for the data source layout.
         let meal = meals[indexPath.row]
-        
+
         cell.nameLabel.text = meal.name
         cell.photoImageView.image = meal.photo
         cell.ratingControl.rating = meal.rating
-
-
+        
         return cell
     }
  
@@ -113,5 +112,5 @@ class MealTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
+
 }
